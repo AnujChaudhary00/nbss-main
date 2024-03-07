@@ -1,0 +1,14 @@
+<nav>
+  <ul class=" text-start text-gray-800 font-medium breadcrumb mx-10 my-5 p-2 flex flex-row">
+    <li>
+      <a class="cursor-pointer text-blue-950  " [routerLink]="['/main']"><i class="pi pi-home"></i> Home
+      </a>
+    </li>
+
+    <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
+      <a class="cursor-pointer text-blue-950  " *ngIf="!last; else lastBreadcrumb" [routerLink]="breadcrumb.url"> &nbsp; / &nbsp;
+        {{breadcrumb.label}}</a>
+      <ng-template #lastBreadcrumb>{{breadcrumb.label}}</ng-template>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,108 @@
+<div class="main-container flex flex-col space-y-10">
+
+    <div class="relative w-full h-screen overflow-hidden carousel">
+        <div class="absolute w-full h-full bg-black opacity-50 z-10"></div>
+        <div class="absolute w-full h-full flex items-end justify-start text-white text-center pb-10 pl-10">
+            <div class="z-20 text-start">
+                <p [innerHTML]="images[currentIndex].title"></p>
+                <p class="mt-2" [innerHTML]="images[currentIndex].description"></p>
+
+                <button *ngIf="currentIndex === 1" class="bg-primary text-black mt-2 px-4 py-2 rounded">Know
+                    More</button>
+            </div>
+        </div>
+        <img *ngFor="let image of images; let i = index" class="absolute w-full h-full object-cover object-center"
+            [src]="image.url" [style.opacity]="i === currentIndex ? '1' : '0'" alt="Image">
+    </div>
+
+    <div class="flex flex-row container mt-10 mx-auto px-4 py-4 md:h-300 md:h-250">
+        <div class="mx-auto flex justify-center w-full gap-10 md:flex-nowrap flex-wrap overflow-auto md:h-250 h-250">
+            <div class="bg-white w-full p-4 flex flex-col justify-center shadow-md overflow-auto h-96">
+                <h2 class="text-3xl text-center font-bold text-red mb-2">Circular</h2>
+                <hr class="border-secondary m-auto w-10">
+                <ul class="overflow-auto p-2 h-64">
+                    <li class="flex md:flex-row flex-col justify-between" *ngFor="let data of announcements">
+                        <div>
+                            <a class="text-lg cursor-pointer hover:underline">{{data.title}}</a>
+                            <p class="text-sm text-gray-900">{{data.description}}</p>
+                        </div>
+                        <p class="text-sm text-red-600">{{data.date}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white w-full p-4 flex flex-col justify-center shadow-md overflow-auto h-96">
+                <h2 class="text-3xl text-center font-bold mb-2">Holiday Calender</h2>
+                <hr class="border-secondary m-auto w-10">
+                <ul class="overflow-auto p-2 h-64">
+                    <li class="flex md:flex-row flex-col justify-between p-2" *ngFor="let holiday of holidays">
+                        <div class="flex flex-row w-full justify-between text-wrap ">
+                            <p class="text-lg text-gray-900">{{holiday.reason}}</p>
+                            <p class="text-sm text-gray-600 text-center align-items-center">{{holiday.date}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-10 py-4 w-full mx-auto mb-5 h-full bg-secondary" style="display: flex; justify-content: center;">
+        <div class="container p-3 w-full h-full text-white">
+            <div class="mx-8 my-5 flex flex-col content-center">
+                <h1 class="text-6xl text-white font-thin mt-10 mb-5 mx-auto">School Life</h1>
+                <hr class="border-gray-600 m-auto w-10">
+            </div>
+
+            <div class="container grid md:grid-cols-3 gap-10 p-2">
+                <div *ngFor="let item of schoolLife;" class="py-4">
+                    <div>
+                        <img [src]="item.image" alt="Image" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-2">
+                        <h2 class="text-4xl font-bold text-white">{{item.title}}</h2>
+                        <p class="mt-2 text-gray-400">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="media p-5" style="margin-bottom: 50px;">
+        <div class="mx-8 my-5 flex flex-col content-center">
+            <h1 class="text-6xl text-gray-600 font-thin mt-10 mb-5 mx-auto">In Media</h1>
+            <hr class="border-secondary m-auto w-10">
+        </div>
+        <div class="container gap-10 p-2 w-full">
+            <div class="w-full  flex flex-row space-x-4 overflow-x-auto hide-scrollbar">
+                <div *ngFor="let item of images;" class="relative  overflow-hidden md:w-64 w-full min-w-max">
+                    <div>
+                        <img [src]="item.url" alt="Image" class="w-full h-64 object-cover">
+                    </div>
+                    <div class=" absolute z-100 inset-0  w-full h-full">
+                        <p class="mt-2 absolute bottom-0 p-4 bg-black w-full text-white hover:opacity-70 opacity-50">
+                            {{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="leadership space-y-10 md:m-10 px-10">
+        <p class="text-5xl text-gray-700 text-center">Leadership</p>
+        <hr class="border-secondary m-auto w-10">
+        <div *ngFor="let person of leadership; let i = index"
+        class="flex flex-col md:flex-row items-center justify-between p-6 ">
+       <div class="w-64 h-64   shadow-md" 
+            [class.md:order-2]="i % 2 === 0" [class.md:order-1]="i % 2 !== 0" 
+            style="border-radius: 100%; mix-blend-mode: darken;">
+           <img [src]="person.image" alt="Image" class="w-64 h-64 object-cover rounded-full p-2" 
+           style="border-radius: 100%; mix-blend-mode: darken">
+       </div>
+       <div class="w-full md:w-1/2 text-center md:text-left p-5" 
+            [class.md:order-1]="i % 2 === 0" [class.md:order-2]="i % 2 !== 0">
+           <h2 class="text-2xl font-bold text-gray-800">{{person.name}}</h2>
+           <p class="mt-2 text-gray-600">{{person.about}}</p>
+       </div>
+   </div>
+    </div>
+
+</div>
